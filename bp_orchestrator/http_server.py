@@ -10,7 +10,7 @@ from .meta_scenario import SLAVES_SYNC
 
 LOG = set_up_logging(__name__)
 _SLAVE_NODES = []
-SETUP: AbstractSetup = None
+SETUP = AbstractSetup()
 SLAVE_CLASS = AbstractSlave
 
 
