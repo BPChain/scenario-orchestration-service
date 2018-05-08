@@ -11,12 +11,10 @@ from .meta_scenario import run_scenario
 LOG = set_up_logging(__name__)
 
 
-def orchestrate(setup: AbstractSetup, slave_class=AbstractSlave):
-    Thread(target=start_controller_server, args=[]).start()
+def orchestrate(setup: AbstractSetup, port: int, slave_class=AbstractSlave):
+    Thread(target=start_controller_server, args=[port]).start()
     Thread(target=start_slave_server, args=[setup, slave_class]).start()
     Thread(target=run_scenario, args=[]).start()
     LOG.info('All threads started')
 
 
-if __name__ == '__main__':
-    orchestrate()
