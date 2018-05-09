@@ -3,6 +3,7 @@ to control them """
 
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer, HTTPStatus
+from typing import Type
 
 from .abstract import AbstractSlave, AbstractSetup
 from .project_logger import set_up_logging
@@ -38,7 +39,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         SLAVES_SYNC.put(_SLAVE_NODES)
 
 
-def start_slave_server(setup: AbstractSetup, slave_class=AbstractSlave):
+def start_slave_server(setup: AbstractSetup, slave_class: Type[AbstractSlave]):
     LOG.info("Masternode is ready for connections")
     global SLAVE_CLASS, SETUP
     SLAVE_CLASS = slave_class
