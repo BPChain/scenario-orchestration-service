@@ -43,13 +43,13 @@ def run_scenario():
     current_scenario = Scenario()
     while True:
         try:
-            LOG.info(".....current slaves %s", current_slaves)
+            LOG.info("Current slaves %s", current_slaves)
             current_slaves = update_current_slaves(current_slaves)
             global TERMINATE
             configs, repetitions = update_settings_blocking()
             LOG.info(configs)
             while len(current_slaves) != len(configs):
-                LOG.warning('Config and slaves are unequal, udating... %s', current_slaves)
+                LOG.warning('Config and slaves are unequal, updating... %s', current_slaves)
                 LOG.warning(configs)
                 current_slaves = update_current_slaves(current_slaves)
                 configs, repetitions = update_settings_if_available(configs, repetitions)
@@ -91,11 +91,12 @@ class Scenario:
                     try:
                         filler_data = codecs.decode(b2a_hex(urandom(size_bytes)))
                         slave.transact(config['name'], filler_data)
+                        LOG.info('Completed transaction in Thread %s %d with delta %d',
+                                 config['name'],
+                                 threading.get_ident(), transaction['delta'])
                     except Exception as error:
-                        LOG.warning(error)
-                    LOG.info('Completed transaction in Thread %s %d with delta %d', config['name'],
-                             threading.get_ident(), transaction['delta'])
-            LOG.info('Finished one repetition %s left in %s', config['name'], repetitions)
+                        LOG.warning('In %s, error %s', config['name'], error)
+            LOG.info('Finished one repetition %d left in %s', repetitions, config['name'])
         LOG.info('Finished repetitions in %s %d', config['name'], threading.get_ident())
 
     def start(self, current_slaves, configs, repetitions):
