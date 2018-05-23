@@ -48,7 +48,7 @@ def run_scenario():
             global TERMINATE
             configs, repetitions = update_settings_blocking()
             LOG.info(configs)
-            while len(current_slaves) != len(configs):
+            while len(current_slaves) < len(configs):
                 LOG.warning('Config and slaves are unequal, updating... %s', current_slaves)
                 LOG.warning(configs)
                 current_slaves = update_current_slaves(current_slaves)
