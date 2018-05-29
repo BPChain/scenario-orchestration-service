@@ -39,6 +39,8 @@ def update_settings_if_available(current_settings, current_reps):
 
 
 def run_scenario():
+    """I dispatch scenario thread according to the defined scenario and stop it if new settings
+    arrive from the controller"""
     current_slaves = []
     current_scenario = Scenario()
     while True:
@@ -71,6 +73,10 @@ def update_current_slaves(current_slaves):
 
 
 class Scenario:
+    """
+    I encapsulate a scenario thread. I tell the slaves that are associated with me what to do.
+    """
+
     def __init__(self):
         self.is_running = False
 

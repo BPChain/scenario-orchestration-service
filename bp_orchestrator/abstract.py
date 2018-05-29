@@ -1,3 +1,7 @@
+"""I hold stubs for the Setup and the Slave classes. To use the orchestration implement the Slave
+class to provide communication with the slaves. If necessary implement Setup for setup of the
+blockchain at the start"""
+
 from typing import Dict
 
 

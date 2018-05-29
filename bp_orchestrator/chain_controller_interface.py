@@ -1,6 +1,6 @@
 """I offer the interface for the the chain controller to send me data"""
 
-# pylint: disable = too-few-public-methods, invalid-name
+# pylint: disable = too-few-public-methods, invalid-name, broad-except
 
 import json
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
