@@ -1,6 +1,8 @@
 """I receive multichain username, password and ip from slave nodes and get their Savoir instances
 to control them """
 
+# pylint: disable=invalid-name, global-statement
+
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer, HTTPStatus
 from typing import Type
@@ -18,7 +20,6 @@ SLAVE_CLASS = AbstractSlave
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     """I handle requests form the slaves who send their user data"""
 
-    # pylint: disable=invalid-name
     def do_POST(self):
         LOG.info(self)
         content_length = int(self.headers['Content-Length'])
@@ -30,7 +31,6 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.add_slave_nodes(config)
 
     def add_slave_nodes(self, config):
-        # pylint: disable=global-statement
         global _SLAVE_NODES
         _SLAVE_NODES = [slave for slave in _SLAVE_NODES if slave.is_alive()] + \
                        [SLAVE_CLASS(config, SETUP)]

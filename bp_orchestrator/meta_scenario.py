@@ -75,7 +75,6 @@ class Scenario:
         self.is_running = False
 
     def __run_transactions(self, slave, config, repetitions):
-        """Publish desired amount of data defined in config to root stream"""
         LOG.info('Started transactions in Thread %s id: %d', config['name'], threading.get_ident())
         transactions = config['transactions']
         while repetitions > 0:
