@@ -1,6 +1,8 @@
 # scenario-orchestration-service
 [![Maintainability](https://api.codeclimate.com/v1/badges/05758af556fd6ab9d0c1/maintainability)](https://codeclimate.com/github/BPChain/scenario-orchestration-service/maintainability)
 
+[![Build Status](https://travis-ci.org/BPChain/scenario-orchestration-service.svg?branch=master)](https://travis-ci.org/BPChain/scenario-orchestration-service)
+
 Orchestrate a Scenario provided by the middleware. This will be done by the 'master' node of a blockchain.
 
 To install run: ```pip install git+https://github.com/BPChain/scenario-orchestration-service.git```
