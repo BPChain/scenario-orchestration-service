@@ -9,5 +9,5 @@ To install run: ```pip install git+https://github.com/BPChain/scenario-orchestra
 <br/> Do this before running ```pip install -r requirements.txt```
 <br /> import and use `orchestrate(port: int, slave_class: Type[AbstractSlave], 
 setup=AbstractSetup()):` to run the service. You need to pass a Slave class which encapsulates 
-the communication with the slaves. You can pass a setup class that sets up things on the 
+the communication with the slaves. You can pass a setup object that sets up things on the 
 blockchain or prepares slaves if necessary.  
