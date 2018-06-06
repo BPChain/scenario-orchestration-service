@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='bp_orchestrator',
-      version='0.8',
+      version='0.9',
       description='Orchestrate blockchain scenarios',
       author='Anton von Weltzien',
       license='MIT',

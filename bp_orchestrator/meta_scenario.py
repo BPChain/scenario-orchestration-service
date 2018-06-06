@@ -100,7 +100,7 @@ class Scenario:
                                  config['name'],
                                  threading.get_ident(), transaction['delta'])
                     except Exception as error:
-                        LOG.warning('In %s, error %s', config['name'], error)
+                        LOG.exception('In %s, error %s', config['name'], error)
             LOG.info('Finished one repetition %d left in %s', repetitions, config['name'])
         LOG.info('Finished repetitions in %s %d', config['name'], threading.get_ident())
 

@@ -26,7 +26,6 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         body = self.rfile.read(content_length)
         self.send_response(HTTPStatus.OK)
         self.end_headers()
-        print(body)
         config = json.loads(body.decode('utf-8'))
         self.add_slave_nodes(config)
 
