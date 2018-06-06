@@ -16,7 +16,6 @@ from .project_logger import set_up_logging
 
 SLAVES_SYNC = Queue()
 SETTINGS_SYNC = Queue()
-TERMINATE = False
 
 LOG = set_up_logging(__name__)
 
@@ -47,16 +46,16 @@ def run_scenario():
         try:
             LOG.info("Current slaves %s", current_slaves)
             current_slaves = update_current_slaves(current_slaves)
-            global TERMINATE
             configs, repetitions = update_settings_blocking()
             LOG.info(configs)
             while len(current_slaves) < len(configs):
-                LOG.warning('Config and slaves are unequal, updating... %s', current_slaves)
-                LOG.warning(configs)
+                LOG.warning('Config and slaves are unequal. slaves: %s, config %s',
+                            current_slaves, configs)
                 current_slaves = update_current_slaves(current_slaves)
                 configs, repetitions = update_settings_if_available(configs, repetitions)
                 sleep(5)
             current_scenario.stop()
+            sleep(5) # let everything settle
             current_scenario = Scenario().start(current_slaves, configs, repetitions)
 
         except Exception as exception:
